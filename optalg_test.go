@@ -88,3 +88,22 @@ func TestReverseString(t *testing.T) {
 		})
 	}
 }
+
+func TestAckerman(t *testing.T) {
+	testCases := []struct {
+		m, n int
+		want int
+	}{
+		{1, 2, 4},
+		{2, 1, 5},
+	}
+
+	for _, tc := range testCases {
+		t.Run("", func(t *testing.T) {
+			got := optalg.Ackerman(tc.m, tc.n)
+			if got != tc.want {
+				t.Errorf("want %d, got %d", tc.want, got)
+			}
+		})
+	}
+}

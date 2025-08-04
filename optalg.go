@@ -46,3 +46,15 @@ func ReverseString(s string) string {
 
 	}
 }
+
+// 4
+func Ackerman(m, n int) int {
+	switch {
+	case m == 0:
+		return n + 1
+	case n == 0:
+		return Ackerman(m-1, 1)
+	default:
+		return Ackerman(m-1, Ackerman(m, n-1))
+	}
+}
