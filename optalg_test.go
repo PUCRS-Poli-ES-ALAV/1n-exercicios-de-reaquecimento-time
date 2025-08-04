@@ -89,6 +89,10 @@ func TestReverseString(t *testing.T) {
 	}
 }
 
+func TestSequence(t *testing.T) {
+	// TODO
+}
+
 func TestAckerman(t *testing.T) {
 	testCases := []struct {
 		m, n int
@@ -124,6 +128,28 @@ func TestVetSumProduct(t *testing.T) {
 			}
 			if got2 != tc.want2 {
 				t.Errorf("want %d, got %d", tc.want2, got2)
+			}
+		})
+	}
+}
+
+func TestIsPalindrome(t *testing.T) {
+	testCases := []struct {
+		s    string
+		want bool
+	}{
+		{"aba", true},
+		{"abcba", true},
+		{"xyzzyx", true},
+		{"a", true},
+		{"abcde", false},
+	}
+
+	for _, tc := range testCases {
+		t.Run("", func(t *testing.T) {
+			got := optalg.IsPalindrome(tc.s)
+			if got != tc.want {
+				t.Errorf("want %t, got %t", tc.want, got)
 			}
 		})
 	}

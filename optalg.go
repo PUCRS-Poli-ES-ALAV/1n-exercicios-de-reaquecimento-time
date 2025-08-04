@@ -48,6 +48,18 @@ func ReverseString(s string) string {
 }
 
 // 5
+func Sequence(n int) int {
+	switch n {
+	case 1:
+		return 1
+	case 2:
+		return 2
+	default:
+		return 2 * Sequence(n-1) * Sequence(n-2)
+	}
+}
+
+// 6
 func Ackerman(m, n int) int {
 	switch {
 	case m == 0:
@@ -59,7 +71,7 @@ func Ackerman(m, n int) int {
 	}
 }
 
-// 6
+// 7
 func VetSumProduct(v []int) (int, int) {
 	switch len(v) {
 	case 0:
@@ -67,5 +79,19 @@ func VetSumProduct(v []int) (int, int) {
 	default:
 		n, m := VetSumProduct(v[1:])
 		return v[0] + n, v[0] * m
+	}
+}
+
+// 8
+func IsPalindrome(s string) bool {
+	switch len(s) {
+	case 0:
+		return false
+	case 1:
+		return true
+	case 2:
+		return s[0] == s[1]
+	default:
+		return (s[0] == s[len(s)-1]) && IsPalindrome(s[1:len(s)-1])
 	}
 }
