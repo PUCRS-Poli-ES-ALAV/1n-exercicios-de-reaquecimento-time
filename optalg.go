@@ -1,5 +1,7 @@
 package optalg
 
+import "fmt"
+
 // 1
 func Multiply(num, times int) int {
 	switch times {
@@ -93,5 +95,27 @@ func IsPalindrome(s string) bool {
 		return s[0] == s[1]
 	default:
 		return (s[0] == s[len(s)-1]) && IsPalindrome(s[1:len(s)-1])
+	}
+}
+
+// 9
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+func Combinations(n int) []string {
+	n %= len(alphabet)
+	fmt.Println("n = ", n, len(alphabet))
+	switch n {
+	case 0:
+		return nil
+	case 1:
+		return []string{string(alphabet[0])}
+	default:
+		result := []string{}
+		for _, s := range Combinations(n - 1) {
+			result = append(result, s+string(alphabet[n-1]))
+			result = append(result, string(alphabet[n-1])+s)
+		}
+		fmt.Printf("result = %+v\n", result)
+		return result
 	}
 }

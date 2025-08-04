@@ -1,6 +1,7 @@
 package optalg_test
 
 import (
+	"slices"
 	"testing"
 
 	"optalg"
@@ -150,6 +151,44 @@ func TestIsPalindrome(t *testing.T) {
 			got := optalg.IsPalindrome(tc.s)
 			if got != tc.want {
 				t.Errorf("want %t, got %t", tc.want, got)
+			}
+		})
+	}
+}
+
+func TestCombinations(t *testing.T) {
+	testCases := []struct {
+		n    int
+		want map[string]struct{}
+	}{
+		{1, map[string]struct{}{"A": struct{}{}}},
+		{2, map[string]struct{}{"AB": struct{}{}, "BA": struct{}{}}},
+		{3, map[string]struct{}{
+			"ABC": struct{}{},
+			"ACB": struct{}{},
+			"BAC": struct{}{},
+			"BCA": struct{}{},
+			"CAB": struct{}{},
+			"CBA": struct{}{},
+		}},
+	}
+
+	for _, tc := range testCases {
+		t.Run("", func(t *testing.T) {
+			got := optalg.Combinations(tc.n)
+			if len(got) != len(tc.want) {
+				t.Errorf("mismatching result lengths: got %d, want %d", len(got), len(tc.want))
+			}
+
+			for _, s := range got {
+				if _, ok := tc.want[s]; !ok {
+					t.Errorf("unexpected entry: %q", s)
+				}
+			}
+			for s := range tc.want {
+				if !slices.Contains(got, s) {
+					t.Errorf("want %q, but it's missing", s)
+				}
 			}
 		})
 	}
