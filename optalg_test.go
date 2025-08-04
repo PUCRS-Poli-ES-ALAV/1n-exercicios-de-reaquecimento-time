@@ -107,3 +107,24 @@ func TestAckerman(t *testing.T) {
 		})
 	}
 }
+
+func TestVetSumProduct(t *testing.T) {
+	testCases := []struct {
+		v            []int
+		want1, want2 int
+	}{
+		{[]int{1, 2, 3, 4}, 10, 24},
+	}
+
+	for _, tc := range testCases {
+		t.Run("", func(t *testing.T) {
+			got1, got2 := optalg.VetSumProduct(tc.v)
+			if got1 != tc.want1 {
+				t.Errorf("want %d, got %d", tc.want1, got1)
+			}
+			if got2 != tc.want2 {
+				t.Errorf("want %d, got %d", tc.want2, got2)
+			}
+		})
+	}
+}

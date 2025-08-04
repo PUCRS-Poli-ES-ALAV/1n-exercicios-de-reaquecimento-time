@@ -47,7 +47,7 @@ func ReverseString(s string) string {
 	}
 }
 
-// 4
+// 5
 func Ackerman(m, n int) int {
 	switch {
 	case m == 0:
@@ -56,5 +56,16 @@ func Ackerman(m, n int) int {
 		return Ackerman(m-1, 1)
 	default:
 		return Ackerman(m-1, Ackerman(m, n-1))
+	}
+}
+
+// 6
+func VetSumProduct(v []int) (int, int) {
+	switch len(v) {
+	case 0:
+		return 0, 1
+	default:
+		n, m := VetSumProduct(v[1:])
+		return v[0] + n, v[0] * m
 	}
 }
